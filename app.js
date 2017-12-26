@@ -3,18 +3,18 @@ const yargs = require('yargs');
 
 const argv = yargs
 .options({
- a: {
-   demand: true,
-   alias: 'address',
-   describe: 'Address to fetch weather for',
-   string: true
- }
+  a: {
+    demand: true,
+    alias: 'address',
+    describe: 'Address to fetch weather for',
+    string: true
+  }
 })
 .help()
 .alias('help','-h')
 .argv
 
-var address = argv.address
+var address = encodeURIComponent(argv.address)
 request({
   url: `http://maps.googleapis.com/maps/api/geocode/json?address=${address}`,
   json: true
