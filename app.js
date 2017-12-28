@@ -20,13 +20,10 @@ var address = encodeURIComponent(argv.address)
 geocode.geocodeAddress(address).then((location) => {
   console.log(JSON.stringify(location, undefined, 2));
   return weather.getWeather(location.latitude, location.longitude)
-}, (errorMessage) => {
-  console.log(errorMessage)
-
 }).then((weatherResults) => {
   console.log('Current temperature is ', weatherResults.temperature);
   console.log('But it feels like ', weatherResults.apparentTemperature);
-}, (errorMessage) => {
+}).catch((errorMessage) => {
   console.log(errorMessage);
- }
-);
+});
+
