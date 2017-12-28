@@ -22,6 +22,13 @@ geocode.geocodeAddress(address, (errorMessage, results) => {
     console.log(errorMessage)
   }else {
     console.log('Results', results);
-    weather.getWeather(results.latitude, results.longitude)
+    weather.getWeather(results.latitude, results.longitude, (errorMessage, weatherResults) =>{
+      if (errorMessage) {
+        console.log(errorMessage)
+      }else {
+        console.log('Current temperature is', weatherResults.temperature);
+        console.log('But it feels like ', weatherResults.apparentTemperature);
+      }
+    })
   }
 });
